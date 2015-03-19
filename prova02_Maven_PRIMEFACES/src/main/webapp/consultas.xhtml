@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+	<h1>CONSULTAS INDIVIDUAIS</h1>
+
+<h:form>
+
+	<h:outputLabel name="header">POR NOME:</h:outputLabel>
+	<h:inputText value="#{pessoaBean.pessoa.nome}"></h:inputText>
+	<h:commandButton value="CONSULTAR" action="#{pessoaBean.consultaPNome}">
+	<f:ajax execute="@form" event="blur" render="tabelaP"/></h:commandButton>
+	<br />
+
+	<h:outputLabel name="header">POR DEPENDENTES:</h:outputLabel>
+	<h:inputText value="#{pessoaBean.pessoa.depend}"></h:inputText>
+	<h:commandButton value="CONSULTAR" action="#{pessoaBean.consultaDepend}" >
+	<f:ajax execute="@form" event="blur" render="tabelaP"/></h:commandButton>
+	<br />
+	
+	<h:outputLabel name="header">POR SALARIO:</h:outputLabel>
+	<h:inputText value="#{pessoaBean.pessoa.salario}"></h:inputText>
+	<h:commandButton value="CONSULTAR" action="#{pessoaBean.consultaSalario}" >
+	<f:ajax execute="@form" event="blur" render="tabelaP"/></h:commandButton>
+	<br />
+	 
+	<h:outputLabel name="header">POR NASCIMENTO:</h:outputLabel>
+	<p:calendar value="#{pessoaBean.pessoa.nasc}"></p:calendar>
+	<!--<h:inputText value="#{pessoaBean.pessoa.nasc}"></h:inputText> -->
+	<h:commandButton value="CONSULTAR" action="#{pessoaBean.consultaNasc}" >
+	<f:ajax execute="@form" event="blur" render="tabelaP"/></h:commandButton>
+	<br />
+ 
+ 	<h:commandButton value="LIMPAR CAMPOS" action="#{pessoaBean.limpaCampos}"/>
+ 
+	<h1>RESULTADO</h1>
+
+ <h:dataTable id="tabelaP" value="#{pessoaBean.algumasPessoas}" var="pessoa" border="1">
+ 
+ <h:column>
+ <f:facet name="header">NOME:</f:facet>
+ <h:outputText value="#{pessoa.nome}"></h:outputText>
+ </h:column>
+ 
+ <h:column>
+ <f:facet name="header">DEPENDENTES:</f:facet>
+ <h:outputText value="#{pessoa.depend}"></h:outputText>
+ </h:column>
+
+ <h:column>
+ <f:facet name="header">SALARIO:</f:facet>
+ <h:outputText value="#{pessoa.salario}"></h:outputText>
+ </h:column>
+ 
+  <h:column>
+ <f:facet name="header">NASCIMENTO:</f:facet>
+ <h:outputText value="#{pessoa.nasc}"></h:outputText>
+ </h:column> 
+ 
+<h:column>
+<f:facet name="header">NASCIMENTO</f:facet>
+<h:outputText value="#{pessoa.nasc}">
+<f:convertDateTime dateStyle="medium" locale="pt_BR">
+</f:convertDateTime></h:outputText>
+</h:column>
+ 
+<h:column>
+<f:facet name="header">ACOES</f:facet>
+<h:commandButton value="ALTERAR" action="#{pessoaBean.preparaEdicao(pessoa)}"/>
+<h:commandButton value="EXCLUIR" action="#{pessoaBean.excluir(pessoa)}"/>
+</h:column>
+
+</h:dataTable>
+</h:form>
+
+
+
+
+  
+<br/>
+<a href="index.xhtml">HOME</a><br/>
+
+</h:body>
+</html>
