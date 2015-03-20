@@ -16,27 +16,32 @@
 	<h:form>
 		<h:panelGrid>
 			<p:outputLabel value="NOME"></p:outputLabel>
-			<p:inputText value="#{pessoaBean.pessoa.nome}"/>
+			<p:inputText value="#{pessoaBean.pessoa.nome}" 
+			required="true" requiredMessage="CAMPO NOME OBRIGATORIO"/>
 			
 			<p:outputLabel value="DEPENDENTES"></p:outputLabel>
-			<p:inputText value="#{pessoaBean.pessoa.depend}"/>
-			
+			<p:inputText value="#{pessoaBean.pessoa.depend}"
+			required="true" requiredMessage="CAMPO DEPENDENTES OBRIGATORIO"/>
+						
 			<p:outputLabel value="SALARIO"></p:outputLabel>
-			<p:inputText value="#{pessoaBean.pessoa.salario}"/>
+			<p:inputText value="#{pessoaBean.pessoa.salario}"
+			required="true" requiredMessage="CAMPO SALARIO OBRIGATORIO"/>
 			
 			<p:outputLabel value="NASCIMENTO"></p:outputLabel>
-			<p:calendar value="#{pessoaBean.pessoa.nasc}" effect="fold"/>
+			<p:calendar value="#{pessoaBean.pessoa.nasc}" effect="fold"
+			required="true" requiredMessage="CAMPO NASCIMENTO OBRIGATORIO"/>
 			
 			<p:commandButton value="Gravar" action="#{pessoaBean.cadastrar}"/>
-			<h:commandButton value="Novo" action="#{pessoaBean.limpaCadastro}"/>
+			<h:commandButton value="Novo" action="#{pessoaBean.limpaCampos}"/>
 			
 		</h:panelGrid>
 	</h:form>
 
 <br/><p:outputLabel value="MENSAGENS"></p:outputLabel><br/>
 	
+<p:messages autoUpdate="true"></p:messages>
+
 	<br/><a href="index.xhtml">HOME</a>
-	
-	
+		
 </h:body>
 </html>

@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import br.com.prova.modelo.Pessoa;
+import br.com.prova.negocios.PessoaNegocios;
 import br.com.prova.persistencia.JPAUtil;
 
 @ApplicationScoped
@@ -40,26 +41,36 @@ public class PessoaBean {
 	public void setPessoa(Pessoa pessoa) {
 		Pessoa = pessoa;
 	}
-	public void limpaCadastro(){
-		this.Pessoa = new Pessoa();
-	}
+	
 	//////////////////////////////////////////////////////////
 	//CRUDS
 	//////////////////////////////////////////////////////////
 	public void cadastrar() {
 
-		EntityManager em = JPAUtil.getConexao();
-		EntityTransaction tx = em.getTransaction();
+		PessoaNegocios pn=new PessoaNegocios();
+		if(pn.controleValidacao(Pessoa)==true){
+			
+			//grave no banco
+			EntityManager em = JPAUtil.getConexao();
+			EntityTransaction tx = em.getTransaction();
 
-		tx.begin();
+			tx.begin();
 
-		em.persist(Pessoa);
-		tx.commit();
+			em.persist(Pessoa);
+			tx.commit();
 
-		em.close();
-		
-		//FacesContext contextCadast= FacesContext.getCurrentInstance();
-		//contextCadast.addMessage(null, new FacesMessage("CADASTRO EFETUADO"));
+			em.close();
+			
+			// EXIBE MENSAGEM DE CADASTRO EFETUADO
+			FacesContext contextCadast= FacesContext.getCurrentInstance();
+			contextCadast.addMessage(null, new FacesMessage("CADASTRO EFETUADO"));
+						
+		}else{
+			
+			FacesContext contextCadast= FacesContext.getCurrentInstance();
+			contextCadast.addMessage(null, new FacesMessage("ALGO NÃO FOI VALIDADO"));
+			//algo não foi validado
+		}
 
 	}
 	
@@ -111,7 +122,6 @@ public class PessoaBean {
 	//CONSULTAS INDIVIDUAIS
 	//////////////////////////////////////////////////////////
 	private List <Pessoa> algumasPessoas;
-	List <Pessoa> opa;
 	
 	public void setAlgumasPessoas(List<Pessoa> algumasPessoas) {
 		this.algumasPessoas = algumasPessoas;
