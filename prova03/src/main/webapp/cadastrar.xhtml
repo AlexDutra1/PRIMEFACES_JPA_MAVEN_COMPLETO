@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+<h1>CADASTRAR</h1>
+
+<h:form>
+<p:panelGrid columns="2" id="PPessoaCadas">
+
+<p:outputLabel value="NOME"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.nome}" 
+required="true" 
+requiredMessage="CAMPO OBRIGATORIO">
+</p:inputText>
+
+<p:outputLabel value="DEPENDENTES"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.dependentes}" 
+required="true" 
+requiredMessage="CAMPO OBRIGATORIO">
+</p:inputText>
+
+<p:outputLabel value="SALARIO"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.salario}" 
+required="true" 
+requiredMessage="CAMPO OBRIGATORIO">
+</p:inputText>
+
+<p:outputLabel value="NASCIMENTO"></p:outputLabel>
+<p:calendar value="#{pessoaBean.pessoa.nascimento}" 
+effect="fold" 
+required="true" 
+requiredMessage="CAMPO OBRIGATORIO">
+</p:calendar>
+
+<p:commandButton value="NOVO CADASTRO" action="#{pessoaBean.limpaCampos}" update="PPessoaCadas"></p:commandButton>
+<p:commandButton value="CADASTRAR" action="#{pessoaBean.cadastrar}"></p:commandButton>
+
+</p:panelGrid>
+</h:form>
+
+<br/><a href="index.xhtml">HOME</a><br/>
+
+<h3>MENSAGENS</h3>
+<p:messages autoUpdate="true"></p:messages>
+
+</h:body>
+</html>

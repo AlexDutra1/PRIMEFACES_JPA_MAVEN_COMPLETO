@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+<h1>EDICAO</h1>
+
+<h:form>
+
+<h:inputHidden value="#{pessoaBean.pessoa.id}"></h:inputHidden>
+
+<p:panelGrid columns="2">
+
+<p:outputLabel value="NOME"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.nome}"></p:inputText>
+
+<p:outputLabel value="DEPENDENTES"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.dependentes}"></p:inputText>
+
+<p:outputLabel value="SALARIO"></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.salario}"></p:inputText>
+
+<p:outputLabel value="NASCIMENTO"></p:outputLabel>
+<p:calendar value="#{pessoaBean.pessoa.nascimento}" effect="fold"></p:calendar>
+</p:panelGrid>
+
+<br/><p:commandButton value="ATUALIZAR" action="#{pessoaBean.gravaEdicao}"></p:commandButton>
+<p:commandButton value="VOLTAR" action="listar.xhtml"></p:commandButton>
+
+</h:form>
+
+<h3>MENSAGENS</h3>
+<p:messages autoUpdate="true"></p:messages>
+
+<br/><a href="listar.xhtml">CANCELAR EDICAO</a>
+
+</h:body>
+</html>

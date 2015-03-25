@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.prova03</groupId>
+  <artifactId>prova03</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>nome_prova03</name>
+
+ <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
+<!-- INFORMA PARA O MAVEN USAR A VERSAO 1.7 do JRE e a versão 3.1 do web dinamico IMPORTANTE-->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+<!-- Permite que seja criado web.xml no projeto maven-->
+
+			<plugin>            
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-war-plugin</artifactId>
+  				<configuration>
+    				<webXml>src\main\webapp\WEB-INF\web.xml</webXml>        
+  				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+  <dependencies>
+
+<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+  
+  <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>4.3.8.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>4.3.8.Final</version>
+</dependency>
+
+
+<!-- VISAO -->
+<dependency>
+	<groupId>org.primefaces</groupId>
+	<artifactId>primefaces</artifactId>
+	<version>5.1</version>
+</dependency>
+
+<dependency>
+  <groupId>org.glassfish</groupId>
+  <artifactId>javax.faces</artifactId>
+  <version>2.2.8</version>
+</dependency>
+
+<dependency>
+	<groupId>org.postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>9.3-1100-jdbc41</version>
+</dependency>
+
+
+
+
+  </dependencies>
+</project>

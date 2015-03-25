@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+<h1>CONSULTAS</h1>
+
+<h:form id="formPessoa">
+
+<p:panelGrid columns="2">
+<p:outputLabel value="TODOS REGISTROS"></p:outputLabel>
+<p:commandButton value="CONSULTAR" action="#{pessoaBean.listaTodos}"></p:commandButton>
+
+<p:outputLabel value="LIMPAR CONSULTAS E RELATORIO"></p:outputLabel>
+<p:commandButton value="LIMPAR" action="#{pessoaBean.limpaCampos}"></p:commandButton>
+</p:panelGrid><br/>
+
+<p:panelGrid columns="3" id="pConsultas">
+
+<p:outputLabel value="POR NOME: "></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.nome}"></p:inputText>
+<p:commandButton value="CONSULTAR" action="#{pessoaBean.consultaPNome}"></p:commandButton>
+
+<p:outputLabel value="POR DEPENDENTES: "></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.dependentes}"></p:inputText>
+<p:commandButton value="CONSULTAR" action="#{pessoaBean.consultaPDepend}"></p:commandButton>
+
+<p:outputLabel value="POR SALARIO: "></p:outputLabel>
+<p:inputText value="#{pessoaBean.pessoa.salario}"></p:inputText>
+<p:commandButton value="CONSULTAR" action="#{pessoaBean.consultaPSalario}"></p:commandButton>
+
+<p:outputLabel value="POR NASCIMENTO: "></p:outputLabel>
+<p:calendar value="#{pessoaBean.pessoa.nascimento}" effect="fold" pattern="dd/MM/yyyy"></p:calendar>
+<p:commandButton value="CONSULTAR" action="#{pessoaBean.consultaPNascimento}"></p:commandButton>
+
+</p:panelGrid>
+
+<br/><p:separator />
+
+<h1>RELATORIO</h1>
+
+<p:dataTable value="#{pessoaBean.muitasPessoas}" var="pessoa" id="tabelaPessoa">
+
+<p:column headerText="NOME">
+<h:outputText value="#{pessoa.nome}"></h:outputText>
+</p:column>
+
+<p:column headerText="DEPENDENTES">
+<h:outputText value="#{pessoa.dependentes}"></h:outputText>
+</p:column>
+
+<p:column headerText="SALARIO">
+<h:outputText value="#{pessoa.salario}"></h:outputText>
+</p:column>
+
+<p:column headerText="NASCIMENTO">
+<h:outputText value="#{pessoa.nascimento}">
+<f:convertDateTime dateStyle="medium" locale="pt_BR"></f:convertDateTime>
+</h:outputText></p:column>
+
+<p:column headerText="ACOES">
+<p:commandButton value="ALTERAR" action="#{pessoaBean.prepararEdicao(pessoa)}"></p:commandButton><br/>
+
+<p:commandButton value="EXCLUIR" actionListener="#{pessoaBean.excluir(pessoa)}" update="@form">
+
+		<!-- Janela de confirmação de exclusão-->
+		<p:confirm header="Confirmação" message="Confirma a exclusão do registro?" icon="ui-icon-alert"/>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fold">
+		        
+		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/> 
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		
+		</p:confirmDialog>
+
+</p:commandButton>
+
+</p:column>
+
+</p:dataTable>
+    
+</h:form>
+
+<h3>MENSAGENS</h3>
+<p:messages autoUpdate="true"></p:messages>
+
+<br/><a href="index.xhtml">HOME</a><br/>
+
+</h:body>
+</html>
